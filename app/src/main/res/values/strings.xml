@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AudioMeter</string>
+    <string name="volume_bar_title">Volume</string>
 </resources>
