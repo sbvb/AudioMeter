@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     MainAdapter mAdapter;
 
+    Thread mThread;
+    AudioRunnable mRunnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +34,31 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mViewDataSet = new ArrayList<>();
-        mViewDataSet.add(new VolumeBarViewData(getString(R.string.volume_bar_title), 50, 100));
+        mViewDataSet.add(new VolumeBarViewData(getString(R.string.volume_bar_title), Short.MAX_VALUE/2));
 
         mAdapter = new MainAdapter(mViewDataSet);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG, "onResume");
+
+        mRunnable = new AudioRunnable(this, mAdapter, mViewDataSet);
+        mThread = new Thread(mRunnable);
+        mThread.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d(TAG, "onPause");
+
+        mRunnable.stopRecording();
+        mThread.interrupt();
+        mThread = null;
     }
 }

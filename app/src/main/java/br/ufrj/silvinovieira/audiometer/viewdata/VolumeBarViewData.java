@@ -13,9 +13,8 @@ public class VolumeBarViewData implements CustomViewData {
     int mVolume;
     int mMaxVolume;
 
-    public VolumeBarViewData(String title, int volume, int maxVolume) {
+    public VolumeBarViewData(String title, int maxVolume) {
         this.mTitle = title;
-        this.mVolume = volume;
         this.mMaxVolume = maxVolume;
     }
 
@@ -25,6 +24,10 @@ public class VolumeBarViewData implements CustomViewData {
 
     public int getVolume() {
         return mVolume;
+    }
+
+    public void setVolume(int volume) {
+        this.mVolume = volume;
     }
 
     public int getMaxVolume() {
