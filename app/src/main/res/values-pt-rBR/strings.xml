@@ -1,0 +1,4 @@
+<resources>
+    <string name="oscilloscope_chart_label">Osciloscópio</string>
+    <string name="frequency_chart_label">Densidade espectral de potência</string>
+</resources>

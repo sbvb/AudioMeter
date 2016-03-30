@@ -9,29 +9,31 @@ public class VolumeBarViewData implements CustomViewData {
 
     private final String TAG = "VolumeBarViewData";
 
-    String mTitle;
-    int mVolume;
-    int mMaxVolume;
+    private final String title;
+    private int volume;
+    private int maxVolume;
 
     public VolumeBarViewData(String title, int maxVolume) {
-        this.mTitle = title;
-        this.mMaxVolume = maxVolume;
-    }
-
-    public String getTitle() {
-        return mTitle;
+        this.title = title;
+        this.maxVolume = maxVolume;
+        this.volume = 0;
     }
 
     public int getVolume() {
-        return mVolume;
+        return volume;
     }
 
     public void setVolume(int volume) {
-        this.mVolume = volume;
+        this.volume = volume;
     }
 
     public int getMaxVolume() {
-        return mMaxVolume;
+        return maxVolume;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
     }
 
     @Override
